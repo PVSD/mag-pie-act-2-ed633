@@ -13,35 +13,61 @@
 public class Magpie2
 {
 	/**
-	 * Get a default greeting 	
+	 * Get a default greeting
 	 * @return a greeting
 	 */
 	public String getGreeting()
 	{
 		return "Hello, let's talk.";
 	}
-	
+
 	/**
 	 * Gives a response to a user statement
-	 * 
+	 *
 	 * @param statement
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public String getResponse(String statement)
-	{
+	public String getResponse(String statement) {
 		String response = "";
-		if (statement.indexOf("no") >= 0)
-		{
+		int trimLength = statement.trim().length();
+		if (statement.indexOf("no") >= 0) {
 			response = "Why so negative?";
-		}
-		else if (statement.indexOf("mother") >= 0
+		} else if (statement.indexOf("mother") >= 0
 				|| statement.indexOf("father") >= 0
 				|| statement.indexOf("sister") >= 0
 				|| statement.indexOf("brother") >= 0)
+
 		{
 			response = "Tell me more about your family.";
+		} else if (statement.indexOf("dog") >= 0
+				|| statement.indexOf("cat") >= 0)
+		{
+			response= "Tell me more about your pets.";
 		}
+		else if (statement.indexOf("Mr. ") >= 0
+				|| statement.indexOf("Mrs. ") >= 0)
+		{
+			response= "He sounds like a good teacher.";
+		}
+		else if (statement.indexOf("math")>= 0
+				|| statement.indexOf("science") >=0
+				|| statement.indexOf("art") >=0
+				|| statement.indexOf("history") >=0)
+		{
+			response= "Oh, I love that subject!";
+		}
+		else if (statement.indexOf("skittle") >= 0
+				|| statement.indexOf("skittles") >= 0)
+		{
+			response= "That is my favorite candy, but i cannot eat..";
+		}
+		else if (statement.indexOf("Grace") >=0)
+		{
+			response= "I know a Grace too and she is mean!";
+		}
+		else if (trimLength == 0) {   //Compare the length of the trimmed string
+			response = "Say something, please."; }
 		else
 		{
 			response = getRandomResponse();
@@ -59,7 +85,7 @@ public class Magpie2
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
-		
+
 		if (whichResponse == 0)
 		{
 			response = "Interesting, tell me more.";
